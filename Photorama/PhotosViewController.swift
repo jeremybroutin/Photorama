@@ -27,6 +27,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		collectionView.dataSource = photoDataSource
 		collectionView.delegate = self
 		
+		// Customize navigation bar
 		navigationController?.navigationBar.barTintColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
 		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
@@ -34,6 +35,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		let leftButton = UIBarButtonItem(title: "Photorama", style: .Plain, target: self, action: nil)
 		navigationItem.leftBarButtonItem = leftButton
 		
+		// Get most recent photos by default
 		store.fetchPhotos(Method.RecentPhotos, keyword: nil){ (photosResult) -> Void in
 
 // Commented out not to store photos in Core Data
