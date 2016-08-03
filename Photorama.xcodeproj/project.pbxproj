@@ -21,6 +21,7 @@
 		E31D9B6C1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B6B1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift */; };
 		E326E1B21CE69F6A006BF211 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326E1B11CE69F6A006BF211 /* ImageStore.swift */; };
 		E326E1B41CE6A264006BF211 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326E1B31CE6A264006BF211 /* Photo+CoreDataProperties.swift */; };
+		E33AEB8B1D528F1B00AEEF40 /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33AEB8A1D528F1B00AEEF40 /* HelloView.swift */; };
 		E3E9866F1CE156440085C233 /* PhotoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9866E1CE156440085C233 /* PhotoInfoViewController.swift */; };
 		E3E986731CE3ED050085C233 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E986711CE3ED050085C233 /* Photo.swift */; };
 		E3E986751CE3EF520085C233 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E986741CE3EF520085C233 /* CoreDataStack.swift */; };
@@ -64,6 +65,7 @@
 		E31D9B6B1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E326E1B11CE69F6A006BF211 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		E326E1B31CE6A264006BF211 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E33AEB8A1D528F1B00AEEF40 /* HelloView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloView.swift; sourceTree = "<group>"; };
 		E3E9866E1CE156440085C233 /* PhotoInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewController.swift; sourceTree = "<group>"; };
 		E3E986711CE3ED050085C233 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		E3E986741CE3EF520085C233 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				E326E1B31CE6A264006BF211 /* Photo+CoreDataProperties.swift */,
 				E3E986741CE3EF520085C233 /* CoreDataStack.swift */,
 				E326E1B11CE69F6A006BF211 /* ImageStore.swift */,
+				E33AEB8A1D528F1B00AEEF40 /* HelloView.swift */,
 			);
 			path = Photorama;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33AEB8B1D528F1B00AEEF40 /* HelloView.swift in Sources */,
 				E31D9B6C1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift in Sources */,
 				E31D9B6A1CD976D200A80FBC /* PhotoDataSource.swift in Sources */,
 				E31D9B271CD8112E00A80FBC /* PhotoStore.swift in Sources */,

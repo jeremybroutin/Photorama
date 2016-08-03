@@ -78,7 +78,8 @@ class PhotoStore {
 			
 			// print response status code and headerFields for debugging web service calls
 			let httpResponse = response as! NSHTTPURLResponse
-			print("\(httpResponse.statusCode), \(httpResponse.allHeaderFields)")
+			//print("\(httpResponse.statusCode), \(httpResponse.allHeaderFields)")
+			print("\(httpResponse.statusCode)")
 			
 			completion(result)
         }

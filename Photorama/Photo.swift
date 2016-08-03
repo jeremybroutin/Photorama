@@ -27,7 +27,8 @@ class Photo: NSManagedObject {
 		remoteURL = NSURL()
 		photoKey = NSUUID().UUIDString // custom subclass
 		dateTaken = NSDate()
-		viewsCount = 1
+		viewsCount = NSNumber(float: 0)
+		isFavorite = false
 	}
 
 }

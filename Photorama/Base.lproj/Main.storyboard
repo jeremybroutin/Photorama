@@ -106,19 +106,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="52j-j2-X28">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRE-wE-Z5k">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Tags" id="B2R-QE-LMy"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c3y-NE-t4H"/>
+                                    <barButtonItem title="Views" id="u1U-cb-x89"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cNH-C3-8bv"/>
+                                    <barButtonItem title="Favorite" id="zGy-qE-8io">
+                                        <connections>
+                                            <action selector="toggleFavorite:" destination="hlB-n2-Qcx" id="8wQ-CQ-UjV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ua0-x6-faB" firstAttribute="top" secondItem="52j-j2-X28" secondAttribute="bottom" id="B3G-6P-oMY"/>
+                            <constraint firstItem="PRE-wE-Z5k" firstAttribute="top" secondItem="52j-j2-X28" secondAttribute="bottom" id="66o-h0-dGg"/>
                             <constraint firstItem="52j-j2-X28" firstAttribute="top" secondItem="Tep-xX-LN8" secondAttribute="bottom" id="BOY-Qc-9ox"/>
+                            <constraint firstItem="Ua0-x6-faB" firstAttribute="top" secondItem="PRE-wE-Z5k" secondAttribute="bottom" id="Bhz-Gq-3gi"/>
+                            <constraint firstAttribute="trailing" secondItem="PRE-wE-Z5k" secondAttribute="trailing" id="ByS-dc-19a"/>
+                            <constraint firstItem="PRE-wE-Z5k" firstAttribute="leading" secondItem="BaB-K8-EeS" secondAttribute="leading" id="WhQ-gJ-afU"/>
                             <constraint firstItem="52j-j2-X28" firstAttribute="leading" secondItem="BaB-K8-EeS" secondAttribute="leading" id="jar-Cy-65Q"/>
                             <constraint firstAttribute="trailing" secondItem="52j-j2-X28" secondAttribute="trailing" id="mSe-G5-DRi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="52j-j2-X28" id="OAd-yc-sND"/>
+                        <outlet property="isFavoriteButton" destination="zGy-qE-8io" id="u3b-8H-m2Y"/>
+                        <outlet property="viewsCountButton" destination="u1U-cb-x89" id="o8W-dX-4g8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qeu-le-tUa" userLabel="First Responder" sceneMemberID="firstResponder"/>

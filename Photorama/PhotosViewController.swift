@@ -16,7 +16,8 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 	var store: PhotoStore! // reference to an instance of PhotoStore
 	let photoDataSource = PhotoDataSource() // reference an instance of PhotoDataSource
 	
-	var helloView: UIView!
+	var helloView: HelloView!
+	var segmentedControl: UISegmentedControl!
     
     // Note: the "store" is a dependency of the PhotosViewController
     // We use property injection in the AppDelegate to give the PhotosVC its "store" dependency.
@@ -29,6 +30,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		
 		collectionView.dataSource = photoDataSource
 		collectionView.delegate = self
+//		collectionView.alpha = 0.2
 		
 		// Customize navigation bar
 		navigationController?.navigationBar.barTintColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
@@ -38,36 +40,51 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		let leftButton = UIBarButtonItem(title: "Photorama", style: .Plain, target: self, action: nil)
 		navigationItem.leftBarButtonItem = leftButton
 		
-		displayHelloView()
-		UIView.animateWithDuration(1, delay: 1, options: [], animations: {
-			self.helloView.transform = CGAffineTransformIdentity
-			}, completion: nil)
+		// Display hello view - Disable until fix for dismissal on Continue button
+//		helloView = HelloView(frame: CGRectMake(0, 0, 0, 0))
+//		view.addSubview(helloView)
+//		UIView.animateWithDuration(1, delay: 1, options: [], animations: {
+//			self.helloView.transform = CGAffineTransformIdentity
+//			}, completion: nil)
 		
+		
+		// Add segmented control
+		segmentedControl = UISegmentedControl(items: ["All Photos", "Favourites"])
+		segmentedControl.backgroundColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
+		segmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: .Selected)
+		segmentedControl.layer.cornerRadius = 5
+		segmentedControl.selectedSegmentIndex = 0
+		segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(segmentedControl)
+		let bottomConstraint = segmentedControl.bottomAnchor.constraintEqualToAnchor(self.bottomLayoutGuide.topAnchor , constant: -8)
+		let margins = view.layoutMarginsGuide
+		let leadingConstraint = segmentedControl.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor)
+		let trailingConstraint = segmentedControl.trailingAnchor.constraintEqualToAnchor(margins.trailingAnchor)
+		bottomConstraint.active = true
+		leadingConstraint.active = true
+		trailingConstraint.active = true
+		segmentedControl.addTarget(self, action: #selector(toggleList(_:)), forControlEvents: .ValueChanged)
 		
 		// Get most recent photos by default
 		store.fetchPhotos(Method.RecentPhotos, keyword: nil){ (photosResult) -> Void in
 
-// Commented out not to store photos in Core Data
-//			let sortByDateTaken = NSSortDescriptor(key: "dateTaken", ascending: true)
-//			let allPhotos = try! self.store.fetchMainQueuePhotos(predicate: nil, sortDescriptors: [sortByDateTaken])
+			let sortByDateTaken = NSSortDescriptor(key: "dateTaken", ascending: true)
+			let allPhotos = try! self.store.fetchMainQueuePhotos(predicate: nil, sortDescriptors: [sortByDateTaken])
 			
-			switch photosResult {
-			case .Success(let photos):
-				NSOperationQueue.mainQueue().addOperationWithBlock({
-					self.photoDataSource.photos = photos
-					self.collectionView.reloadSections(NSIndexSet(index: 0))
-				})
-			case .Failure(_):
-				break
-			}
-			
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				self.photoDataSource.photos = allPhotos
+				self.collectionView.reloadSections(NSIndexSet(index: 0))
+			})
 			
 		}
     }
 	
-	// Listen to view size changes
+	// Listen to view size changes (portrait or landascape) to adapt hello view if necessary
 	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-		setHelloViewConstraints()
+		if let helloView = helloView {
+			helloView.setConstraints()
+		}
+		
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -84,65 +101,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		collectionView.collectionViewLayout = layout
 	}
 	
-	// MARK: - Helper functions
-	
-	// Initialize the Hello View
-	func displayHelloView(){
-		
-		// slightly hide collection view which will start loading
-		collectionView.alpha = 0.2
-		
-		// create view
-		helloView = UIView(frame: CGRectMake(0, 0, 0, 0))
-		helloView.transform = CGAffineTransformMakeScale(0, 0)
-		
-		helloView.backgroundColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
-		helloView.layer.cornerRadius = 5
-		helloView.layer.shadowColor = UIColor.darkGrayColor().CGColor
-		helloView.layer.shadowOpacity = 0.6
-		helloView.layer.shadowOffset = CGSizeMake(0, 2)
-		helloView.layer.shadowRadius = 1
-		helloView.layer.shouldRasterize = true
-		
-		helloView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(helloView)
-		
-		// setup constraint
-		setHelloViewConstraints()
-		
-		// create label subview: label
-		// create label subview: button
-		
-	}
-	
-	// Set Hello View constraints
-	func setHelloViewConstraints(){
-		
-		//remove any previous constraints
-		for constraint in view.constraints {
-			if constraint.firstItem as! UIView == helloView && constraint.secondItem as! UIView == view {
-				view.removeConstraint(constraint)
-			}
-		}
-		
-		// check device orientation and add constraints consequently
-		if UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) {
-			let xAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0)
-			let yAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1, constant: 0)
-			let widthConstraint = NSLayoutConstraint(item: helloView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: -100)
-			let heightConstraint = NSLayoutConstraint(item: helloView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: -150)
-			view.addConstraints([xAxisConstraint, yAxisConstraint, widthConstraint, heightConstraint])
-		}
-		if UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation){
-			let xAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0)
-			let yAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1, constant: 0)
-			let widthConstraint = NSLayoutConstraint(item: helloView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: -100)
-			let heightConstraint = NSLayoutConstraint(item: helloView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: -300)
-			view.addConstraints([xAxisConstraint, yAxisConstraint, widthConstraint, heightConstraint])
-		}
-	}
-	
-	
 	// We will download the image data for only the cells that the user is attempting to view
 	// using the UICollectionView delegate method willDisplayCell.
 	// Best practice in order to only download what we need and prevent a costly operation.
@@ -158,12 +116,13 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 				// The index path for the photo might have changed between the tine the request started
 				// and finished, so find the most recent index path
 				
-				let photoIndex = self.photoDataSource.photos.indexOf(photo)!
-				let photoIndexPath = NSIndexPath(forRow: photoIndex, inSection: 0)
-				
-				// When the request finishes, only update the cell if it's still visible
-				if let cell = self.collectionView.cellForItemAtIndexPath(photoIndexPath) as? PhotoCollectionViewCell {
-					cell.updateWithImage(photo.image)
+				if let photoIndex = self.photoDataSource.photos.indexOf(photo){
+					let photoIndexPath = NSIndexPath(forRow: photoIndex, inSection: 0)
+					
+					// When the request finishes, only update the cell if it's still visible
+					if let cell = self.collectionView.cellForItemAtIndexPath(photoIndexPath) as? PhotoCollectionViewCell {
+						cell.updateWithImage(photo.image)
+					}
 				}
 			})
 		}
@@ -174,11 +133,41 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		if segue.identifier == "showPhoto" {
 			if let selectedIndexPath = collectionView.indexPathsForSelectedItems()?.first {
 				let photo = photoDataSource.photos[selectedIndexPath.row]
+				
+				// Update views count
+				let numberOfViews = Float(photo.viewsCount) + 1.0
+				photo.viewsCount = NSNumber(float: numberOfViews)
+				do {
+					try store.coreDataStack.saveChanges()
+				}
+				catch let error {
+					print ("Error while saving changes on picture viewsCount: \(error)")
+				}
+				
 				let destinationVC = segue.destinationViewController as! PhotoInfoViewController
 				destinationVC.photo = photo
 				destinationVC.store = store
 			}
 		}
+	}
+
+	func refreshCollection(){
+		let sortByDateTaken = NSSortDescriptor(key: "dateTaken", ascending: true)
+		var predicate: NSPredicate?
+		
+		if segmentedControl.selectedSegmentIndex > 0 {
+			predicate = NSPredicate(format: "isFavorite == true")
+		}
+		let allPhotos = try! self.store.fetchMainQueuePhotos(predicate: predicate, sortDescriptors: [sortByDateTaken])
+		print("total (CoreData) fetched photos: \(allPhotos.count)")
+		NSOperationQueue.mainQueue().addOperationWithBlock() {
+			self.photoDataSource.photos = allPhotos
+			self.collectionView.reloadSections(NSIndexSet(index: 0))
+		}
+	}
+	
+	func toggleList(sender:AnyObject){
+		refreshCollection()
 	}
 }
 

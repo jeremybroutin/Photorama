@@ -11,13 +11,16 @@ import UIKit
 class PhotoInfoViewController: UIViewController {
 	
 	@IBOutlet var imageView: UIImageView!
-	
+	@IBOutlet var isFavoriteButton: UIBarButtonItem!
+	@IBOutlet var viewsCountButton: UIBarButtonItem!
+
 	// The PhotosViewController will pass both the Photo and the PhotoStore
 	// to this PhotoInfoViewController
 	
 	var photo: Photo!{
 		didSet{
 			navigationItem.title = photo.title
+			
 		}
 	}
 	var store: PhotoStore!
@@ -45,6 +48,12 @@ class PhotoInfoViewController: UIViewController {
 				
 			}
 		}
+		
+		// Check if it's a favorite or not
+		isFavoriteButton.tintColor = photo.isFavorite ? UIColor.redColor() : UIColor.grayColor()
+		
+		// Add view count data
+		viewsCountButton.title = "Views: \(photo.viewsCount)"
 	}
 	
 	/* MARK:- Helper functions */
@@ -54,4 +63,17 @@ class PhotoInfoViewController: UIViewController {
 		activityVC.popoverPresentationController?.sourceView = sender as? UIView
 		self.presentViewController(activityVC, animated: true, completion: nil)
 	}
+	
+	@IBAction func toggleFavorite(sender: UIBarButtonItem) {
+		photo.isFavorite = !photo.isFavorite
+		isFavoriteButton.tintColor = photo.isFavorite ? UIColor.redColor() : UIColor.grayColor()
+		
+		do {
+			try store.coreDataStack.saveChanges()
+		}
+		catch let error {
+			print("Core Data saved failed: \(error)")
+		}
+	}
+
 }
