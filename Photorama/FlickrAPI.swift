@@ -84,7 +84,8 @@ struct FlickrAPI {
     
     // internal (default access control level) exposed to the rest of the project
     static func recentPhotosURL() -> NSURL {
-        return flickrURL(method: .RecentPhotos, parameters: ["extras": "url_h,date_taken"], keyword: nil)
+		// Limit recent photos set to 50
+		return flickrURL(method: .RecentPhotos, parameters: ["extras": "url_h,date_taken", "per_page": "50"], keyword: nil)
     }
 	
 	static func searchPhotosURL(keyword: String) -> NSURL {
