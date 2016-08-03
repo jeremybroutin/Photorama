@@ -15,12 +15,15 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 	
 	var store: PhotoStore! // reference to an instance of PhotoStore
 	let photoDataSource = PhotoDataSource() // reference an instance of PhotoDataSource
+	
+	var helloView: UIView!
     
     // Note: the "store" is a dependency of the PhotosViewController
     // We use property injection in the AppDelegate to give the PhotosVC its "store" dependency.
     // This way the PhotosVC can interact with the PhotoStore
     
-    
+	// MARK: - App Life Cycle
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -34,6 +37,12 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		
 		let leftButton = UIBarButtonItem(title: "Photorama", style: .Plain, target: self, action: nil)
 		navigationItem.leftBarButtonItem = leftButton
+		
+		displayHelloView()
+		UIView.animateWithDuration(1, delay: 1, options: [], animations: {
+			self.helloView.transform = CGAffineTransformIdentity
+			}, completion: nil)
+		
 		
 		// Get most recent photos by default
 		store.fetchPhotos(Method.RecentPhotos, keyword: nil){ (photosResult) -> Void in
@@ -56,6 +65,11 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		}
     }
 	
+	// Listen to view size changes
+	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+		setHelloViewConstraints()
+	}
+	
 	override func viewDidLayoutSubviews() {
 		//Layout the collectionView cells properly on the View
 		let layout = UICollectionViewFlowLayout()
@@ -69,6 +83,65 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		
 		collectionView.collectionViewLayout = layout
 	}
+	
+	// MARK: - Helper functions
+	
+	// Initialize the Hello View
+	func displayHelloView(){
+		
+		// slightly hide collection view which will start loading
+		collectionView.alpha = 0.2
+		
+		// create view
+		helloView = UIView(frame: CGRectMake(0, 0, 0, 0))
+		helloView.transform = CGAffineTransformMakeScale(0, 0)
+		
+		helloView.backgroundColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
+		helloView.layer.cornerRadius = 5
+		helloView.layer.shadowColor = UIColor.darkGrayColor().CGColor
+		helloView.layer.shadowOpacity = 0.6
+		helloView.layer.shadowOffset = CGSizeMake(0, 2)
+		helloView.layer.shadowRadius = 1
+		helloView.layer.shouldRasterize = true
+		
+		helloView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(helloView)
+		
+		// setup constraint
+		setHelloViewConstraints()
+		
+		// create label subview: label
+		// create label subview: button
+		
+	}
+	
+	// Set Hello View constraints
+	func setHelloViewConstraints(){
+		
+		//remove any previous constraints
+		for constraint in view.constraints {
+			if constraint.firstItem as! UIView == helloView && constraint.secondItem as! UIView == view {
+				view.removeConstraint(constraint)
+			}
+		}
+		
+		// check device orientation and add constraints consequently
+		if UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) {
+			let xAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0)
+			let yAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1, constant: 0)
+			let widthConstraint = NSLayoutConstraint(item: helloView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: -100)
+			let heightConstraint = NSLayoutConstraint(item: helloView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: -150)
+			view.addConstraints([xAxisConstraint, yAxisConstraint, widthConstraint, heightConstraint])
+		}
+		if UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation){
+			let xAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0)
+			let yAxisConstraint = NSLayoutConstraint(item: helloView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1, constant: 0)
+			let widthConstraint = NSLayoutConstraint(item: helloView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: -100)
+			let heightConstraint = NSLayoutConstraint(item: helloView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: -300)
+			view.addConstraints([xAxisConstraint, yAxisConstraint, widthConstraint, heightConstraint])
+		}
+	}
+	
 	
 	// We will download the image data for only the cells that the user is attempting to view
 	// using the UICollectionView delegate method willDisplayCell.
