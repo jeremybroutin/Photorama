@@ -77,7 +77,7 @@ struct FlickrAPI {
         components.queryItems = queryItems
 		
 		// debug
-		print("components url is: \(String(components.URL!))")
+		//print("components url is: \(String(components.URL!))")
 		
 		return components.URL!
     }

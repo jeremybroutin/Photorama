@@ -30,7 +30,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		
 		collectionView.dataSource = photoDataSource
 		collectionView.delegate = self
-//		collectionView.alpha = 0.2
 		
 		// Customize navigation bar
 		navigationController?.navigationBar.barTintColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
@@ -40,12 +39,12 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		let leftButton = UIBarButtonItem(title: "Photorama", style: .Plain, target: self, action: nil)
 		navigationItem.leftBarButtonItem = leftButton
 		
-		// Display hello view - Disable until fix for dismissal on Continue button
-//		helloView = HelloView(frame: CGRectMake(0, 0, 0, 0))
-//		view.addSubview(helloView)
-//		UIView.animateWithDuration(1, delay: 1, options: [], animations: {
-//			self.helloView.transform = CGAffineTransformIdentity
-//			}, completion: nil)
+		// Display hello view
+		helloView = HelloView(frame: CGRectMake(0, 0, 0, 0))
+		view.addSubview(helloView)
+		UIView.animateWithDuration(1, delay: 1, options: [], animations: {
+			self.helloView.transform = CGAffineTransformIdentity
+			}, completion: nil)
 		
 		
 		// Add segmented control

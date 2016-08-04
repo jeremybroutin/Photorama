@@ -26,6 +26,9 @@ class HelloView: UIView {
 	}
 	
 	func didLoad(){
+		
+		superview?.alpha = 0.2
+		
 		self.transform = CGAffineTransformMakeScale(0, 0)
 		
 		self.backgroundColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
@@ -42,6 +45,7 @@ class HelloView: UIView {
 	}
 	
 	override func didMoveToSuperview() {
+		guard superview != nil else { return }
 		setConstraints()
 	}
 	
@@ -85,7 +89,11 @@ class HelloView: UIView {
 	}
 	
 	func dismissHelloView(){
-		self.removeFromSuperview()
+		UIView.animateWithDuration(1, delay: 0, options: [], animations: {
+			self.transform = CGAffineTransformMakeScale(0.01, 0.01)
+			}) { (result) in
+				self.removeFromSuperview()
+		}
 	}
 	
 }
