@@ -25,7 +25,7 @@ class PhotoInfoViewController: UIViewController {
 	}
 	var store: PhotoStore!
 	
-	/* MARK: - App Life Cycle */
+	// MARK: - App Life Cycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -56,7 +56,19 @@ class PhotoInfoViewController: UIViewController {
 		viewsCountButton.title = "Views: \(photo.viewsCount)"
 	}
 	
-	/* MARK:- Helper functions */
+	// MARK: - Segue
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "ShowTags"{
+			let navController = segue.destinationViewController as! UINavigationController
+			let tagController = navController.topViewController as! TagsViewController
+			
+			tagController.store = store
+			tagController.photo = photo
+		}
+	}
+	
+	// MARK: - Helper functions
 	
 	func sharePhoto(sender:AnyObject){
 		let activityVC = UIActivityViewController(activityItems: [photo.image!], applicationActivities: nil)

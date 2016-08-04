@@ -13,7 +13,7 @@ class CoreDataStack {
 	
 	let managedObjectModelName: String
 	
-	/********** MARK: - NSManagedObjectModel **********/
+	//MARK: - NSManagedObjectModel
 	
 	// Property to read in the model file from the main bundle
 	private lazy var managedObjectModel: NSManagedObjectModel = {
@@ -23,7 +23,7 @@ class CoreDataStack {
 	// Note: lazily loading allows the property initialization to be deferred until it is actually needed
 	
 	
-	/********** MARK: - NSPersistentStoreCoordinator **********/
+	//MARK: - NSPersistentStoreCoordinator
 	
 	// Prepare location for the store where data will be saved and loaded from
 	private var applicationDocumentsDirectory: NSURL = {
@@ -41,7 +41,7 @@ class CoreDataStack {
 	}()
 	
 	
-	/********** MARK: - NSmanagedObjectContext **********/
+	// MARK: - NSmanagedObjectContext
 	
 	// The context is the portal through which you interact with your entities.
 	// It is associated with a specific persistent core coordinator.
@@ -51,6 +51,15 @@ class CoreDataStack {
 		let moc = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 		moc.persistentStoreCoordinator = self.persistentStoreCoordinator
 		moc.name = "Main Queue Context (UI Context)"
+		return moc
+	}()
+	
+	lazy var privateQueueContext: NSManagedObjectContext = {
+		let moc = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+		// An NSManagedObjectContext can either be associated with a NSPersistentStoreCoordinator or with a 
+		// parent NSManagedObjectContext
+		moc.parentContext = self.mainQueueContext
+		moc.name = "Primary Private Queue Context"
 		return moc
 	}()
 	
@@ -65,6 +74,22 @@ class CoreDataStack {
 	// Save changes to the context after Photo entities have been inserted into the context
 	func saveChanges() throws {
 		var error: ErrorType?
+		
+		
+		privateQueueContext.performBlockAndWait { () -> Void in
+			if self.privateQueueContext.hasChanges {
+				do {
+					try self.privateQueueContext.save()
+				}
+				catch let saveError {
+					error = saveError
+				}
+			}
+		}
+		if let error = error {
+			throw error
+		}
+		
 		mainQueueContext.performBlockAndWait() {
 			if self.mainQueueContext.hasChanges {
 				do {

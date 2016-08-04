@@ -192,7 +192,6 @@ extension PhotosViewController: UITextFieldDelegate {
 		}
 		activityIndicator.stopAnimating()
 		activityIndicator.removeFromSuperview()
-		textField.text = "Search..."
 		textField.resignFirstResponder()
 		return true
 	}

@@ -21,5 +21,6 @@ extension Photo {
     @NSManaged var title: String
     @NSManaged var viewsCount: NSNumber
 	@NSManaged var isFavorite: Bool
+	@NSManaged var tags: Set<NSManagedObject>
 
 }
