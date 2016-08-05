@@ -1,586 +1,1452 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		E31D9AF21CD80B0700A80FBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9AF11CD80B0700A80FBC /* AppDelegate.swift */; };
-		E31D9AF71CD80B0700A80FBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31D9AF51CD80B0700A80FBC /* Main.storyboard */; };
-		E31D9AFA1CD80B0700A80FBC /* Photorama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E31D9AF81CD80B0700A80FBC /* Photorama.xcdatamodeld */; };
-		E31D9AFC1CD80B0700A80FBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31D9AFB1CD80B0700A80FBC /* Assets.xcassets */; };
-		E31D9AFF1CD80B0700A80FBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31D9AFD1CD80B0700A80FBC /* LaunchScreen.storyboard */; };
-		E31D9B0A1CD80B0700A80FBC /* PhotoramaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B091CD80B0700A80FBC /* PhotoramaTests.swift */; };
-		E31D9B151CD80B0700A80FBC /* PhotoramaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B141CD80B0700A80FBC /* PhotoramaUITests.swift */; };
-		E31D9B231CD80B5F00A80FBC /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B221CD80B5F00A80FBC /* PhotosViewController.swift */; };
-		E31D9B251CD80CA900A80FBC /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B241CD80CA900A80FBC /* FlickrAPI.swift */; };
-		E31D9B271CD8112E00A80FBC /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B261CD8112E00A80FBC /* PhotoStore.swift */; };
-		E31D9B6A1CD976D200A80FBC /* PhotoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B691CD976D200A80FBC /* PhotoDataSource.swift */; };
-		E31D9B6C1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D9B6B1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift */; };
-		E326E1B21CE69F6A006BF211 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326E1B11CE69F6A006BF211 /* ImageStore.swift */; };
-		E326E1B41CE6A264006BF211 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326E1B31CE6A264006BF211 /* Photo+CoreDataProperties.swift */; };
-		E33AEB8B1D528F1B00AEEF40 /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33AEB8A1D528F1B00AEEF40 /* HelloView.swift */; };
-		E33AEB8D1D52B7D600AEEF40 /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33AEB8C1D52B7D600AEEF40 /* TagsViewController.swift */; };
-		E33AEB8F1D52B84B00AEEF40 /* TagDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33AEB8E1D52B84B00AEEF40 /* TagDataSource.swift */; };
-		E3E9866F1CE156440085C233 /* PhotoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9866E1CE156440085C233 /* PhotoInfoViewController.swift */; };
-		E3E986731CE3ED050085C233 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E986711CE3ED050085C233 /* Photo.swift */; };
-		E3E986751CE3EF520085C233 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E986741CE3EF520085C233 /* CoreDataStack.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E31D9B061CD80B0700A80FBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E31D9AE61CD80B0700A80FBC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E31D9AED1CD80B0700A80FBC;
-			remoteInfo = Photorama;
-		};
-		E31D9B111CD80B0700A80FBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E31D9AE61CD80B0700A80FBC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E31D9AED1CD80B0700A80FBC;
-			remoteInfo = Photorama;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		E31D9AEE1CD80B0700A80FBC /* Photorama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photorama.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E31D9AF11CD80B0700A80FBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E31D9AF61CD80B0700A80FBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E31D9AF91CD80B0700A80FBC /* Photorama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Photorama.xcdatamodel; sourceTree = "<group>"; };
-		E31D9AFB1CD80B0700A80FBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E31D9AFE1CD80B0700A80FBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E31D9B001CD80B0700A80FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E31D9B051CD80B0700A80FBC /* PhotoramaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoramaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E31D9B091CD80B0700A80FBC /* PhotoramaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoramaTests.swift; sourceTree = "<group>"; };
-		E31D9B0B1CD80B0700A80FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E31D9B101CD80B0700A80FBC /* PhotoramaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoramaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E31D9B141CD80B0700A80FBC /* PhotoramaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoramaUITests.swift; sourceTree = "<group>"; };
-		E31D9B161CD80B0700A80FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E31D9B221CD80B5F00A80FBC /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		E31D9B241CD80CA900A80FBC /* FlickrAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
-		E31D9B261CD8112E00A80FBC /* PhotoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
-		E31D9B691CD976D200A80FBC /* PhotoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDataSource.swift; sourceTree = "<group>"; };
-		E31D9B6B1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
-		E326E1B11CE69F6A006BF211 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
-		E326E1B31CE6A264006BF211 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E33AEB8A1D528F1B00AEEF40 /* HelloView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloView.swift; sourceTree = "<group>"; };
-		E33AEB8C1D52B7D600AEEF40 /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
-		E33AEB8E1D52B84B00AEEF40 /* TagDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDataSource.swift; sourceTree = "<group>"; };
-		E3E9866E1CE156440085C233 /* PhotoInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewController.swift; sourceTree = "<group>"; };
-		E3E986711CE3ED050085C233 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		E3E986741CE3EF520085C233 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		E31D9AEB1CD80B0700A80FBC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E31D9B021CD80B0700A80FBC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E31D9B0D1CD80B0700A80FBC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		E31D9AE51CD80B0700A80FBC = {
-			isa = PBXGroup;
-			children = (
-				E31D9AF01CD80B0700A80FBC /* Photorama */,
-				E31D9B081CD80B0700A80FBC /* PhotoramaTests */,
-				E31D9B131CD80B0700A80FBC /* PhotoramaUITests */,
-				E31D9AEF1CD80B0700A80FBC /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		E31D9AEF1CD80B0700A80FBC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E31D9AEE1CD80B0700A80FBC /* Photorama.app */,
-				E31D9B051CD80B0700A80FBC /* PhotoramaTests.xctest */,
-				E31D9B101CD80B0700A80FBC /* PhotoramaUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E31D9AF01CD80B0700A80FBC /* Photorama */ = {
-			isa = PBXGroup;
-			children = (
-				E31D9AF11CD80B0700A80FBC /* AppDelegate.swift */,
-				E31D9B221CD80B5F00A80FBC /* PhotosViewController.swift */,
-				E31D9B691CD976D200A80FBC /* PhotoDataSource.swift */,
-				E3E9866E1CE156440085C233 /* PhotoInfoViewController.swift */,
-				E33AEB8C1D52B7D600AEEF40 /* TagsViewController.swift */,
-				E33AEB8E1D52B84B00AEEF40 /* TagDataSource.swift */,
-				E31D9AF51CD80B0700A80FBC /* Main.storyboard */,
-				E31D9AFB1CD80B0700A80FBC /* Assets.xcassets */,
-				E31D9AFD1CD80B0700A80FBC /* LaunchScreen.storyboard */,
-				E31D9B001CD80B0700A80FBC /* Info.plist */,
-				E31D9AF81CD80B0700A80FBC /* Photorama.xcdatamodeld */,
-				E31D9B241CD80CA900A80FBC /* FlickrAPI.swift */,
-				E31D9B261CD8112E00A80FBC /* PhotoStore.swift */,
-				E31D9B6B1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift */,
-				E3E986711CE3ED050085C233 /* Photo.swift */,
-				E326E1B31CE6A264006BF211 /* Photo+CoreDataProperties.swift */,
-				E3E986741CE3EF520085C233 /* CoreDataStack.swift */,
-				E326E1B11CE69F6A006BF211 /* ImageStore.swift */,
-				E33AEB8A1D528F1B00AEEF40 /* HelloView.swift */,
-			);
-			path = Photorama;
-			sourceTree = "<group>";
-		};
-		E31D9B081CD80B0700A80FBC /* PhotoramaTests */ = {
-			isa = PBXGroup;
-			children = (
-				E31D9B091CD80B0700A80FBC /* PhotoramaTests.swift */,
-				E31D9B0B1CD80B0700A80FBC /* Info.plist */,
-			);
-			path = PhotoramaTests;
-			sourceTree = "<group>";
-		};
-		E31D9B131CD80B0700A80FBC /* PhotoramaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E31D9B141CD80B0700A80FBC /* PhotoramaUITests.swift */,
-				E31D9B161CD80B0700A80FBC /* Info.plist */,
-			);
-			path = PhotoramaUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		E31D9AED1CD80B0700A80FBC /* Photorama */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E31D9B191CD80B0700A80FBC /* Build configuration list for PBXNativeTarget "Photorama" */;
-			buildPhases = (
-				E31D9AEA1CD80B0700A80FBC /* Sources */,
-				E31D9AEB1CD80B0700A80FBC /* Frameworks */,
-				E31D9AEC1CD80B0700A80FBC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Photorama;
-			productName = Photorama;
-			productReference = E31D9AEE1CD80B0700A80FBC /* Photorama.app */;
-			productType = "com.apple.product-type.application";
-		};
-		E31D9B041CD80B0700A80FBC /* PhotoramaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E31D9B1C1CD80B0700A80FBC /* Build configuration list for PBXNativeTarget "PhotoramaTests" */;
-			buildPhases = (
-				E31D9B011CD80B0700A80FBC /* Sources */,
-				E31D9B021CD80B0700A80FBC /* Frameworks */,
-				E31D9B031CD80B0700A80FBC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E31D9B071CD80B0700A80FBC /* PBXTargetDependency */,
-			);
-			name = PhotoramaTests;
-			productName = PhotoramaTests;
-			productReference = E31D9B051CD80B0700A80FBC /* PhotoramaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E31D9B0F1CD80B0700A80FBC /* PhotoramaUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E31D9B1F1CD80B0700A80FBC /* Build configuration list for PBXNativeTarget "PhotoramaUITests" */;
-			buildPhases = (
-				E31D9B0C1CD80B0700A80FBC /* Sources */,
-				E31D9B0D1CD80B0700A80FBC /* Frameworks */,
-				E31D9B0E1CD80B0700A80FBC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E31D9B121CD80B0700A80FBC /* PBXTargetDependency */,
-			);
-			name = PhotoramaUITests;
-			productName = PhotoramaUITests;
-			productReference = E31D9B101CD80B0700A80FBC /* PhotoramaUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		E31D9AE61CD80B0700A80FBC /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Jeremy Broutin";
-				TargetAttributes = {
-					E31D9AED1CD80B0700A80FBC = {
-						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 4QSA42CC68;
-					};
-					E31D9B041CD80B0700A80FBC = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = E31D9AED1CD80B0700A80FBC;
-					};
-					E31D9B0F1CD80B0700A80FBC = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = E31D9AED1CD80B0700A80FBC;
-					};
-				};
-			};
-			buildConfigurationList = E31D9AE91CD80B0700A80FBC /* Build configuration list for PBXProject "Photorama" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = E31D9AE51CD80B0700A80FBC;
-			productRefGroup = E31D9AEF1CD80B0700A80FBC /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				E31D9AED1CD80B0700A80FBC /* Photorama */,
-				E31D9B041CD80B0700A80FBC /* PhotoramaTests */,
-				E31D9B0F1CD80B0700A80FBC /* PhotoramaUITests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		E31D9AEC1CD80B0700A80FBC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E31D9AFF1CD80B0700A80FBC /* LaunchScreen.storyboard in Resources */,
-				E31D9AFC1CD80B0700A80FBC /* Assets.xcassets in Resources */,
-				E31D9AF71CD80B0700A80FBC /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E31D9B031CD80B0700A80FBC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E31D9B0E1CD80B0700A80FBC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		E31D9AEA1CD80B0700A80FBC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E33AEB8B1D528F1B00AEEF40 /* HelloView.swift in Sources */,
-				E33AEB8F1D52B84B00AEEF40 /* TagDataSource.swift in Sources */,
-				E31D9B6C1CD97A5A00A80FBC /* PhotoCollectionViewCell.swift in Sources */,
-				E31D9B6A1CD976D200A80FBC /* PhotoDataSource.swift in Sources */,
-				E31D9B271CD8112E00A80FBC /* PhotoStore.swift in Sources */,
-				E31D9B231CD80B5F00A80FBC /* PhotosViewController.swift in Sources */,
-				E3E986731CE3ED050085C233 /* Photo.swift in Sources */,
-				E31D9AF21CD80B0700A80FBC /* AppDelegate.swift in Sources */,
-				E326E1B41CE6A264006BF211 /* Photo+CoreDataProperties.swift in Sources */,
-				E3E986751CE3EF520085C233 /* CoreDataStack.swift in Sources */,
-				E31D9AFA1CD80B0700A80FBC /* Photorama.xcdatamodeld in Sources */,
-				E31D9B251CD80CA900A80FBC /* FlickrAPI.swift in Sources */,
-				E33AEB8D1D52B7D600AEEF40 /* TagsViewController.swift in Sources */,
-				E3E9866F1CE156440085C233 /* PhotoInfoViewController.swift in Sources */,
-				E326E1B21CE69F6A006BF211 /* ImageStore.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E31D9B011CD80B0700A80FBC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E31D9B0A1CD80B0700A80FBC /* PhotoramaTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E31D9B0C1CD80B0700A80FBC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E31D9B151CD80B0700A80FBC /* PhotoramaUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E31D9B071CD80B0700A80FBC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E31D9AED1CD80B0700A80FBC /* Photorama */;
-			targetProxy = E31D9B061CD80B0700A80FBC /* PBXContainerItemProxy */;
-		};
-		E31D9B121CD80B0700A80FBC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E31D9AED1CD80B0700A80FBC /* Photorama */;
-			targetProxy = E31D9B111CD80B0700A80FBC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E31D9AF51CD80B0700A80FBC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E31D9AF61CD80B0700A80FBC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E31D9AFD1CD80B0700A80FBC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E31D9AFE1CD80B0700A80FBC /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		E31D9B171CD80B0700A80FBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E31D9B181CD80B0700A80FBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E31D9B1A1CD80B0700A80FBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jérémy Broutin (WXFW3JRERG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jérémy Broutin (WXFW3JRERG)";
-				INFOPLIST_FILE = Photorama/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeremybroutin.photorama;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		E31D9B1B1CD80B0700A80FBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jérémy Broutin (4QSA42CC68)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jérémy Broutin (4QSA42CC68)";
-				INFOPLIST_FILE = Photorama/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeremybroutin.photorama;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		E31D9B1D1CD80B0700A80FBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PhotoramaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeremybroutin.PhotoramaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photorama.app/Photorama";
-			};
-			name = Debug;
-		};
-		E31D9B1E1CD80B0700A80FBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PhotoramaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeremybroutin.PhotoramaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photorama.app/Photorama";
-			};
-			name = Release;
-		};
-		E31D9B201CD80B0700A80FBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PhotoramaUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeremybroutin.PhotoramaUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Photorama;
-			};
-			name = Debug;
-		};
-		E31D9B211CD80B0700A80FBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PhotoramaUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeremybroutin.PhotoramaUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Photorama;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		E31D9AE91CD80B0700A80FBC /* Build configuration list for PBXProject "Photorama" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E31D9B171CD80B0700A80FBC /* Debug */,
-				E31D9B181CD80B0700A80FBC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E31D9B191CD80B0700A80FBC /* Build configuration list for PBXNativeTarget "Photorama" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E31D9B1A1CD80B0700A80FBC /* Debug */,
-				E31D9B1B1CD80B0700A80FBC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E31D9B1C1CD80B0700A80FBC /* Build configuration list for PBXNativeTarget "PhotoramaTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E31D9B1D1CD80B0700A80FBC /* Debug */,
-				E31D9B1E1CD80B0700A80FBC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E31D9B1F1CD80B0700A80FBC /* Build configuration list for PBXNativeTarget "PhotoramaUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E31D9B201CD80B0700A80FBC /* Debug */,
-				E31D9B211CD80B0700A80FBC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E31D9AF81CD80B0700A80FBC /* Photorama.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E31D9AF91CD80B0700A80FBC /* Photorama.xcdatamodel */,
-			);
-			currentVersion = E31D9AF91CD80B0700A80FBC /* Photorama.xcdatamodel */;
-			path = Photorama.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
-	};
-	rootObject = E31D9AE61CD80B0700A80FBC /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>0D834BD5E48D6C08BDE0B323</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-Photorama.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-Photorama/Pods-Photorama.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>20D075FAF379C247BEABFE9B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>44D1FDCC4D65EC2381C0F22D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_Photorama.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>44D9614472B31E304512B5BB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-Photorama.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-Photorama/Pods-Photorama.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>58B706C50E2C02DF46937515</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>44D1FDCC4D65EC2381C0F22D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>74BE569EA01D1E08DDB9BEED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>44D1FDCC4D65EC2381C0F22D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AD582B371EA7945EF2AF8F7E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>44D9614472B31E304512B5BB</string>
+				<string>0D834BD5E48D6C08BDE0B323</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C735600C56A8BBB841BC163A</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-Photorama/Pods-Photorama-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>DC37677F394623855E15E24C</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-Photorama/Pods-Photorama-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9AE51CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9AF01CD80B0700A80FBC</string>
+				<string>E31D9B081CD80B0700A80FBC</string>
+				<string>E31D9B131CD80B0700A80FBC</string>
+				<string>E31D9AEF1CD80B0700A80FBC</string>
+				<string>AD582B371EA7945EF2AF8F7E</string>
+				<string>58B706C50E2C02DF46937515</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AE61CD80B0700A80FBC</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0730</string>
+				<key>LastUpgradeCheck</key>
+				<string>0730</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Jeremy Broutin</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>E31D9AED1CD80B0700A80FBC</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+						<key>DevelopmentTeam</key>
+						<string>4QSA42CC68</string>
+					</dict>
+					<key>E31D9B041CD80B0700A80FBC</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+						<key>TestTargetID</key>
+						<string>E31D9AED1CD80B0700A80FBC</string>
+					</dict>
+					<key>E31D9B0F1CD80B0700A80FBC</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+						<key>TestTargetID</key>
+						<string>E31D9AED1CD80B0700A80FBC</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>E31D9AE91CD80B0700A80FBC</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>E31D9AE51CD80B0700A80FBC</string>
+			<key>productRefGroup</key>
+			<string>E31D9AEF1CD80B0700A80FBC</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>E31D9AED1CD80B0700A80FBC</string>
+				<string>E31D9B041CD80B0700A80FBC</string>
+				<string>E31D9B0F1CD80B0700A80FBC</string>
+			</array>
+		</dict>
+		<key>E31D9AE91CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E31D9B171CD80B0700A80FBC</string>
+				<string>E31D9B181CD80B0700A80FBC</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E31D9AEA1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E33AEB8B1D528F1B00AEEF40</string>
+				<string>E33AEB8F1D52B84B00AEEF40</string>
+				<string>E31D9B6C1CD97A5A00A80FBC</string>
+				<string>E31D9B6A1CD976D200A80FBC</string>
+				<string>E31D9B271CD8112E00A80FBC</string>
+				<string>E31D9B231CD80B5F00A80FBC</string>
+				<string>E3E986731CE3ED050085C233</string>
+				<string>E31D9AF21CD80B0700A80FBC</string>
+				<string>E326E1B41CE6A264006BF211</string>
+				<string>E3E986751CE3EF520085C233</string>
+				<string>E31D9AFA1CD80B0700A80FBC</string>
+				<string>E31D9B251CD80CA900A80FBC</string>
+				<string>E33AEB8D1D52B7D600AEEF40</string>
+				<string>E3E9866F1CE156440085C233</string>
+				<string>E326E1B21CE69F6A006BF211</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9AEB1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>74BE569EA01D1E08DDB9BEED</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9AEC1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E31D9AFF1CD80B0700A80FBC</string>
+				<string>E31D9AFC1CD80B0700A80FBC</string>
+				<string>E31D9AF71CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9AED1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E31D9B191CD80B0700A80FBC</string>
+			<key>buildPhases</key>
+			<array>
+				<string>20D075FAF379C247BEABFE9B</string>
+				<string>E31D9AEA1CD80B0700A80FBC</string>
+				<string>E31D9AEB1CD80B0700A80FBC</string>
+				<string>E31D9AEC1CD80B0700A80FBC</string>
+				<string>C735600C56A8BBB841BC163A</string>
+				<string>DC37677F394623855E15E24C</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Photorama</string>
+			<key>productName</key>
+			<string>Photorama</string>
+			<key>productReference</key>
+			<string>E31D9AEE1CD80B0700A80FBC</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>E31D9AEE1CD80B0700A80FBC</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Photorama.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E31D9AEF1CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9AEE1CD80B0700A80FBC</string>
+				<string>E31D9B051CD80B0700A80FBC</string>
+				<string>E31D9B101CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AF01CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9AF11CD80B0700A80FBC</string>
+				<string>E31D9B221CD80B5F00A80FBC</string>
+				<string>E31D9B691CD976D200A80FBC</string>
+				<string>E3E9866E1CE156440085C233</string>
+				<string>E33AEB8C1D52B7D600AEEF40</string>
+				<string>E33AEB8E1D52B84B00AEEF40</string>
+				<string>E31D9AF51CD80B0700A80FBC</string>
+				<string>E31D9AFB1CD80B0700A80FBC</string>
+				<string>E31D9AFD1CD80B0700A80FBC</string>
+				<string>E31D9B001CD80B0700A80FBC</string>
+				<string>E31D9AF81CD80B0700A80FBC</string>
+				<string>E31D9B241CD80CA900A80FBC</string>
+				<string>E31D9B261CD8112E00A80FBC</string>
+				<string>E31D9B6B1CD97A5A00A80FBC</string>
+				<string>E3E986711CE3ED050085C233</string>
+				<string>E326E1B31CE6A264006BF211</string>
+				<string>E3E986741CE3EF520085C233</string>
+				<string>E326E1B11CE69F6A006BF211</string>
+				<string>E33AEB8A1D528F1B00AEEF40</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Photorama</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AF11CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AF21CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9AF11CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9AF51CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9AF61CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AF61CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AF71CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9AF51CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9AF81CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9AF91CD80B0700A80FBC</string>
+			</array>
+			<key>currentVersion</key>
+			<string>E31D9AF91CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>XCVersionGroup</string>
+			<key>path</key>
+			<string>Photorama.xcdatamodeld</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+			<key>versionGroupType</key>
+			<string>wrapper.xcdatamodel</string>
+		</dict>
+		<key>E31D9AF91CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.xcdatamodel</string>
+			<key>path</key>
+			<string>Photorama.xcdatamodel</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AFA1CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9AF81CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9AFB1CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AFC1CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9AFB1CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9AFD1CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9AFE1CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AFE1CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9AFF1CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9AFD1CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B001CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B011CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E31D9B0A1CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9B021CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9B031CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9B041CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E31D9B1C1CD80B0700A80FBC</string>
+			<key>buildPhases</key>
+			<array>
+				<string>E31D9B011CD80B0700A80FBC</string>
+				<string>E31D9B021CD80B0700A80FBC</string>
+				<string>E31D9B031CD80B0700A80FBC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>E31D9B071CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>PhotoramaTests</string>
+			<key>productName</key>
+			<string>PhotoramaTests</string>
+			<key>productReference</key>
+			<string>E31D9B051CD80B0700A80FBC</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>E31D9B051CD80B0700A80FBC</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>PhotoramaTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E31D9B061CD80B0700A80FBC</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>E31D9AE61CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E31D9AED1CD80B0700A80FBC</string>
+			<key>remoteInfo</key>
+			<string>Photorama</string>
+		</dict>
+		<key>E31D9B071CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>E31D9AED1CD80B0700A80FBC</string>
+			<key>targetProxy</key>
+			<string>E31D9B061CD80B0700A80FBC</string>
+		</dict>
+		<key>E31D9B081CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9B091CD80B0700A80FBC</string>
+				<string>E31D9B0B1CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>PhotoramaTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B091CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotoramaTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B0A1CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B091CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B0B1CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B0C1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E31D9B151CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9B0D1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9B0E1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E31D9B0F1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E31D9B1F1CD80B0700A80FBC</string>
+			<key>buildPhases</key>
+			<array>
+				<string>E31D9B0C1CD80B0700A80FBC</string>
+				<string>E31D9B0D1CD80B0700A80FBC</string>
+				<string>E31D9B0E1CD80B0700A80FBC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>E31D9B121CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>PhotoramaUITests</string>
+			<key>productName</key>
+			<string>PhotoramaUITests</string>
+			<key>productReference</key>
+			<string>E31D9B101CD80B0700A80FBC</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.ui-testing</string>
+		</dict>
+		<key>E31D9B101CD80B0700A80FBC</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>PhotoramaUITests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E31D9B111CD80B0700A80FBC</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>E31D9AE61CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E31D9AED1CD80B0700A80FBC</string>
+			<key>remoteInfo</key>
+			<string>Photorama</string>
+		</dict>
+		<key>E31D9B121CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>E31D9AED1CD80B0700A80FBC</string>
+			<key>targetProxy</key>
+			<string>E31D9B111CD80B0700A80FBC</string>
+		</dict>
+		<key>E31D9B131CD80B0700A80FBC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D9B141CD80B0700A80FBC</string>
+				<string>E31D9B161CD80B0700A80FBC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>PhotoramaUITests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B141CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotoramaUITests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B151CD80B0700A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B141CD80B0700A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B161CD80B0700A80FBC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B171CD80B0700A80FBC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string></string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string></string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E31D9B181CD80B0700A80FBC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string></string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string></string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E31D9B191CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E31D9B1A1CD80B0700A80FBC</string>
+				<string>E31D9B1B1CD80B0700A80FBC</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E31D9B1A1CD80B0700A80FBC</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>44D9614472B31E304512B5BB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer: J&#233;r&#233;my Broutin (WXFW3JRERG)</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer: J&#233;r&#233;my Broutin (WXFW3JRERG)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Photorama/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.jeremybroutin.photorama</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E31D9B1B1CD80B0700A80FBC</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>0D834BD5E48D6C08BDE0B323</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Distribution: J&#233;r&#233;my Broutin (4QSA42CC68)</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Distribution: J&#233;r&#233;my Broutin (4QSA42CC68)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Photorama/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.jeremybroutin.photorama</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E31D9B1C1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E31D9B1D1CD80B0700A80FBC</string>
+				<string>E31D9B1E1CD80B0700A80FBC</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E31D9B1D1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>PhotoramaTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.jeremybroutin.PhotoramaTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/Photorama.app/Photorama</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E31D9B1E1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>PhotoramaTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.jeremybroutin.PhotoramaTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/Photorama.app/Photorama</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E31D9B1F1CD80B0700A80FBC</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E31D9B201CD80B0700A80FBC</string>
+				<string>E31D9B211CD80B0700A80FBC</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E31D9B201CD80B0700A80FBC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>INFOPLIST_FILE</key>
+				<string>PhotoramaUITests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.jeremybroutin.PhotoramaUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>Photorama</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E31D9B211CD80B0700A80FBC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>INFOPLIST_FILE</key>
+				<string>PhotoramaUITests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.jeremybroutin.PhotoramaUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>Photorama</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E31D9B221CD80B5F00A80FBC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotosViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B231CD80B5F00A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B221CD80B5F00A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B241CD80CA900A80FBC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FlickrAPI.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B251CD80CA900A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B241CD80CA900A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B261CD8112E00A80FBC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotoStore.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B271CD8112E00A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B261CD8112E00A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B691CD976D200A80FBC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotoDataSource.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B6A1CD976D200A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B691CD976D200A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E31D9B6B1CD97A5A00A80FBC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotoCollectionViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E31D9B6C1CD97A5A00A80FBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E31D9B6B1CD97A5A00A80FBC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E326E1B11CE69F6A006BF211</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ImageStore.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E326E1B21CE69F6A006BF211</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E326E1B11CE69F6A006BF211</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E326E1B31CE6A264006BF211</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Photo+CoreDataProperties.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E326E1B41CE6A264006BF211</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E326E1B31CE6A264006BF211</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E33AEB8A1D528F1B00AEEF40</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HelloView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E33AEB8B1D528F1B00AEEF40</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E33AEB8A1D528F1B00AEEF40</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E33AEB8C1D52B7D600AEEF40</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>TagsViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E33AEB8D1D52B7D600AEEF40</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E33AEB8C1D52B7D600AEEF40</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E33AEB8E1D52B84B00AEEF40</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>TagDataSource.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E33AEB8F1D52B84B00AEEF40</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E33AEB8E1D52B84B00AEEF40</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E3E9866E1CE156440085C233</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PhotoInfoViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E3E9866F1CE156440085C233</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E3E9866E1CE156440085C233</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E3E986711CE3ED050085C233</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Photo.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E3E986731CE3ED050085C233</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E3E986711CE3ED050085C233</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E3E986741CE3EF520085C233</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CoreDataStack.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E3E986751CE3EF520085C233</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E3E986741CE3EF520085C233</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>E31D9AE61CD80B0700A80FBC</string>
+</dict>
+</plist>
