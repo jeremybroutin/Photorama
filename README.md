@@ -7,6 +7,8 @@ This project provides iOS development training on:
 - Core Data (managed objects) and Documents Directory storage (image files)
 - Enum
 
+In addition, minor UI work was done on the project to improve user experience.
+
 **Credit**: iOS Programming, The Big Nerd Ranch Guide 5th Edition - Christian Keur, Aaron Hillegass
 
 ### Screenshot(s)
