@@ -13,15 +13,15 @@ class TagDataSource: NSObject, UITableViewDataSource {
 	
 	var tags: [NSManagedObject] = []
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return tags.count
 	}
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
 		
 		let tag = tags[indexPath.row]
-		let name = tag.valueForKey("name") as! String
+		let name = tag.value(forKey: "name") as! String
 		cell.textLabel?.text = name
 		
 		return cell

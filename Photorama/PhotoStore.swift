@@ -12,18 +12,18 @@ import CoreData
 class PhotoStore {
 	
 	enum ImageResult{
-		case Success(UIImage)
-		case Failure(ErrorType)
+		case success(UIImage)
+		case failure(Error)
 	}
 	
-	enum PhotoError: ErrorType {
-		case ImageCreationError
+	enum PhotoError: Error {
+		case imageCreationError
 	}
     
     // hold an instance of NSURLSession
-    let session: NSURLSession = {
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        return NSURLSession(configuration: config)
+    let session: URLSession = {
+        let config = URLSessionConfiguration.default
+        return URLSession(configuration: config)
     }()
 	
 	// hold an instance of CoreDataStack
@@ -36,9 +36,9 @@ class PhotoStore {
 	// Fetching web data is asynchronous, so the method cannot directly return an instance of PhotosResult
 	// Instead the caller of this method will siply a completion closure for the PhotoStore to call once the request is completed
 	
-	func fetchPhotos(method: Method, keyword: String?, completion: (PhotosResult) -> Void) {
+	func fetchPhotos(_ method: Method, keyword: String?, completion: @escaping (PhotosResult) -> Void) {
 		
-		var url = NSURL()
+		var url: URL!
 		
 		switch method {
 		case .RecentPhotos:
@@ -49,17 +49,17 @@ class PhotoStore {
 			}
 		}
 		
-		let request = NSURLRequest(URL: url)
-        let task = session.dataTaskWithRequest(request){
+		let request = URLRequest(url: url)
+        let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) -> Void in
             
             // completion closure to call when the request finishes
             var result = self.processRecentPhotosRequest(data: data, error: error)
 			
-			if case let .Success(photos) = result {
+			if case let .success(photos) = result {
 				let privateQueueContext = self.coreDataStack.privateQueueContext
-				privateQueueContext.performBlockAndWait({
-					try! privateQueueContext.obtainPermanentIDsForObjects(photos)
+				privateQueueContext.performAndWait({
+					try! privateQueueContext.obtainPermanentIDs(for: photos)
 				})
 				let objectIDs = photos.map{ $0.objectID }
 				let predicate = NSPredicate(format: "self IN %@", objectIDs)
@@ -69,28 +69,28 @@ class PhotoStore {
 					try self.coreDataStack.saveChanges()
 					
 					let mainQueuePhotos = try self.fetchMainQueuePhotos(predicate: predicate, sortDescriptors: [sortByDateTaken])
-					result = .Success(mainQueuePhotos)
+					result = .success(mainQueuePhotos)
 				}
 				catch let error {
-					result = .Failure(error)
+					result = .failure(error)
 				}
 			}
 			
 			// print response status code and headerFields for debugging web service calls
-			let httpResponse = response as! NSHTTPURLResponse
+			let httpResponse = response as! HTTPURLResponse
 			//print("\(httpResponse.statusCode), \(httpResponse.allHeaderFields)")
 			print("\(httpResponse.statusCode)")
 			
 			completion(result)
-        }
+        })
         
         // tasks are always created in a suspended state so we need to call resume to start the web service
         task.resume()
     }
 	
-	func processRecentPhotosRequest(data data: NSData? , error: NSError?)-> PhotosResult {
+	func processRecentPhotosRequest(data: Data? , error: Error?)-> PhotosResult {
 		guard let jsonData = data else {
-			return .Failure(error!)
+			return .failure(error!)
 		}
 		
 		// Pass the mainQueuContext to the FlickrAPI struct once the web service request successfully completes
@@ -98,70 +98,70 @@ class PhotoStore {
 	}
 	
 	// Download the image data from the Photo remoteURL
-	func fetchImageForPhoto(photo: Photo, completion: (ImageResult) -> Void) {
+	func fetchImageForPhoto(_ photo: Photo, completion: @escaping (ImageResult) -> Void) {
 		
 		// If the image already exists, it should not be downloaded again and instead give the saved image in Core data
 		let photoKey = photo.photoKey
 		if let image = imageStore.imageForKey(photoKey) {
 			photo.image = image
-			completion(.Success(image))
+			completion(.success(image))
 			return
 		}
 		
 		// Otherwise, go ahead, download it and save it to Core data
 		let photoURL = photo.remoteURL
-		let request = NSURLRequest(URL: photoURL)
+		let request = URLRequest(url: photoURL as URL)
 		
-		let task = session.dataTaskWithRequest(request) {
+		let task = session.dataTask(with: request, completionHandler: {
 			(data, response, error) in
 			
-			let result = self.processImageRequest(data: data, error: error)
+			let result = self.processImageRequest(data: data, error: error as NSError?)
 			
 			// Can use an if case statement to check wether result has a value of .Success
 			// Similar to a switch case with a break under the .Failure case
-			if case let .Success(image) = result {
+			if case let .success(image) = result {
 				photo.image = image
 				self.imageStore.setImage(image, forKey: photoKey)
 			}
 			
 			completion(result)
-		}
+		}) 
 		
 		task.resume()
 	}
 	
 	// Process the data fromn the web service request into an image, if possible
-	func processImageRequest(data data: NSData?, error: NSError?) -> ImageResult {
+	func processImageRequest(data: Data?, error: NSError?) -> ImageResult {
 		
 		guard let
 			imageData = data,
-			image = UIImage(data:imageData) else {
+			let image = UIImage(data:imageData) else {
 			
 			// Couldn't create an image
 			if data == nil {
-				return .Failure(error!)
+				return .failure(error!)
 			}
 			else {
-				return .Failure(PhotoError.ImageCreationError)
+				return .failure(PhotoError.imageCreationError)
 			}
 		}
 		
-		return .Success(image)
+		return .success(image)
 	}
 	
 	// Fetch Photos instances from the main queue context
-	func fetchMainQueuePhotos(predicate predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [Photo] {
+	func fetchMainQueuePhotos(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [Photo] {
 		
-		let fetchRequest = NSFetchRequest(entityName: "Photo")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
 		fetchRequest.sortDescriptors = sortDescriptors
 		fetchRequest.predicate = predicate
 		
 		let mainQueueContext = self.coreDataStack.mainQueueContext
 		var mainQueuePhotos: [Photo]?
-		var fetchRequestError: ErrorType?
-		mainQueueContext.performBlockAndWait() {
+		var fetchRequestError: Error?
+		mainQueueContext.performAndWait() {
 			do {
-				mainQueuePhotos = try mainQueueContext.executeFetchRequest(fetchRequest) as? [Photo]
+				mainQueuePhotos = try mainQueueContext.fetch(fetchRequest) as? [Photo]
 			}
 			catch let error {
 				fetchRequestError = error
@@ -176,18 +176,18 @@ class PhotoStore {
 	}
 	
 	// Fetch Tags from main queue
-	func fetchMainQueueTags(predicate predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [NSManagedObject] {
-		let fetchRequest = NSFetchRequest(entityName: "Tag")
+	func fetchMainQueueTags(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [NSManagedObject] {
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
 		fetchRequest.predicate = predicate
 		fetchRequest.sortDescriptors = sortDescriptors
 		
 		let mainQueueContext = self.coreDataStack.mainQueueContext
 		var mainQueueTags: [NSManagedObject]?
-		var fetchRequestError: ErrorType?
+		var fetchRequestError: Error?
 		
-		mainQueueContext.performBlockAndWait({
+		mainQueueContext.performAndWait({
 			do {
-				mainQueueTags = try mainQueueContext.executeFetchRequest(fetchRequest) as? [NSManagedObject]
+				mainQueueTags = try mainQueueContext.fetch(fetchRequest) as? [NSManagedObject]
 			}
 			catch let error {
 				fetchRequestError = error

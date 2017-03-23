@@ -31,26 +31,26 @@ class PhotoInfoViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Customize navigation bar
-		let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(PhotoInfoViewController.sharePhoto(_:)))
-		shareButton.enabled = false
+		let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(PhotoInfoViewController.sharePhoto(_:)))
+		shareButton.isEnabled = false
 		navigationItem.rightBarButtonItem = shareButton
 		
 		// Get the image from the selected photo
 		store.fetchImageForPhoto(photo) { (result) in
 			switch result {
-			case let .Success(image):
-				NSOperationQueue.mainQueue().addOperationWithBlock({
+			case let .success(image):
+				OperationQueue.main.addOperation({
 					self.imageView.image = image
-					shareButton.enabled = true
+					shareButton.isEnabled = true
 				})
-			case let .Failure(error):
+			case let .failure(error):
 				print("Error fetching image for photo: \(error)")
 				
 			}
 		}
 		
 		// Check if it's a favorite or not
-		isFavoriteButton.tintColor = photo.isFavorite ? UIColor.redColor() : UIColor.grayColor()
+		isFavoriteButton.tintColor = photo.isFavorite ? UIColor.red : UIColor.gray
 		
 		// Add view count data
 		viewsCountButton.title = "Views: \(photo.viewsCount)"
@@ -58,9 +58,9 @@ class PhotoInfoViewController: UIViewController {
 	
 	// MARK: - Segue
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "ShowTags"{
-			let navController = segue.destinationViewController as! UINavigationController
+			let navController = segue.destination as! UINavigationController
 			let tagController = navController.topViewController as! TagsViewController
 			
 			tagController.store = store
@@ -70,15 +70,15 @@ class PhotoInfoViewController: UIViewController {
 	
 	// MARK: - Helper functions
 	
-	func sharePhoto(sender:AnyObject){
+	func sharePhoto(_ sender:AnyObject){
 		let activityVC = UIActivityViewController(activityItems: [photo.image!], applicationActivities: nil)
 		activityVC.popoverPresentationController?.sourceView = sender as? UIView
-		self.presentViewController(activityVC, animated: true, completion: nil)
+		self.present(activityVC, animated: true, completion: nil)
 	}
 	
-	@IBAction func toggleFavorite(sender: UIBarButtonItem) {
+	@IBAction func toggleFavorite(_ sender: UIBarButtonItem) {
 		photo.isFavorite = !photo.isFavorite
-		isFavoriteButton.tintColor = photo.isFavorite ? UIColor.redColor() : UIColor.grayColor()
+		isFavoriteButton.tintColor = photo.isFavorite ? UIColor.red : UIColor.gray
 		
 		do {
 			try store.coreDataStack.saveChanges()

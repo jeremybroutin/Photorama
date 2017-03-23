@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import CoreData
 
 
@@ -24,21 +25,21 @@ class Photo: NSManagedObject {
 		// Give the properties their initial values
 		title = ""
 		photoID = ""
-		remoteURL = NSURL()
-		photoKey = NSUUID().UUIDString // custom subclass
-		dateTaken = NSDate()
-		viewsCount = NSNumber(float: 0)
+		remoteURL = NSURLComponents().url!
+		photoKey = UUID().uuidString // custom subclass
+		dateTaken = Date()
+		viewsCount = NSNumber(value: 0 as Float)
 		isFavorite = false
 	}
 	
-	func addTagObject(tag: NSManagedObject){
-		let currentTags = mutableSetValueForKey("tags")
-		currentTags.addObject(tag)
+	func addTagObject(_ tag: NSManagedObject){
+		let currentTags = mutableSetValue(forKey: "tags")
+		currentTags.add(tag)
 	}
 	
-	func removeTagObject(tag:NSManagedObject){
-		let currentTags = mutableSetValueForKey("tags")
-		currentTags.removeObject(tag)
+	func removeTagObject(_ tag:NSManagedObject){
+		let currentTags = mutableSetValue(forKey: "tags")
+		currentTags.remove(tag)
 	}
 
 }

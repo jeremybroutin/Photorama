@@ -14,10 +14,10 @@ import CoreData
 
 extension Photo {
 
-    @NSManaged var dateTaken: NSDate
+    @NSManaged var dateTaken: Date
     @NSManaged var photoID: String
     @NSManaged var photoKey: String
-    @NSManaged var remoteURL: NSURL
+    @NSManaged var remoteURL: URL
     @NSManaged var title: String
     @NSManaged var viewsCount: NSNumber
 	@NSManaged var isFavorite: Bool

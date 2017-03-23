@@ -33,36 +33,36 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		
 		// Customize navigation bar
 		navigationController?.navigationBar.barTintColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
-		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+		navigationController?.navigationBar.tintColor = UIColor.white
+		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 		
-		let leftButton = UIBarButtonItem(title: "Photorama", style: .Plain, target: self, action: nil)
+		let leftButton = UIBarButtonItem(title: "Photorama", style: .plain, target: self, action: nil)
 		navigationItem.leftBarButtonItem = leftButton
 		
-		// Display hello view
-		helloView = HelloView(frame: CGRectMake(0, 0, 0, 0))
-		view.addSubview(helloView)
-		UIView.animateWithDuration(1, delay: 1, options: [], animations: {
-			self.helloView.transform = CGAffineTransformIdentity
-			}, completion: nil)
+//		// Display hello view
+//		helloView = HelloView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//		view.addSubview(helloView)
+//		UIView.animate(withDuration: 1, delay: 1, options: [], animations: {
+//			self.helloView.transform = CGAffineTransform.identity
+//			}, completion: nil)
 		
 		
 		// Add segmented control
 		segmentedControl = UISegmentedControl(items: ["All Photos", "Favourites"])
 		segmentedControl.backgroundColor = UIColor(red:0.16, green:0.40, blue:0.74, alpha:1.0)
-		segmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: .Selected)
+		segmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
 		segmentedControl.layer.cornerRadius = 5
 		segmentedControl.selectedSegmentIndex = 0
 		segmentedControl.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(segmentedControl)
-		let bottomConstraint = segmentedControl.bottomAnchor.constraintEqualToAnchor(self.bottomLayoutGuide.topAnchor , constant: -8)
+		let bottomConstraint = segmentedControl.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor , constant: -8)
 		let margins = view.layoutMarginsGuide
-		let leadingConstraint = segmentedControl.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor)
-		let trailingConstraint = segmentedControl.trailingAnchor.constraintEqualToAnchor(margins.trailingAnchor)
-		bottomConstraint.active = true
-		leadingConstraint.active = true
-		trailingConstraint.active = true
-		segmentedControl.addTarget(self, action: #selector(toggleList(_:)), forControlEvents: .ValueChanged)
+		let leadingConstraint = segmentedControl.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
+		let trailingConstraint = segmentedControl.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+		bottomConstraint.isActive = true
+		leadingConstraint.isActive = true
+		trailingConstraint.isActive = true
+		segmentedControl.addTarget(self, action: #selector(toggleList(_:)), for: .valueChanged)
 		
 		// Get most recent photos by default
 		store.fetchPhotos(Method.RecentPhotos, keyword: nil){ (photosResult) -> Void in
@@ -70,16 +70,16 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 			let sortByDateTaken = NSSortDescriptor(key: "dateTaken", ascending: true)
 			let allPhotos = try! self.store.fetchMainQueuePhotos(predicate: nil, sortDescriptors: [sortByDateTaken])
 			
-			NSOperationQueue.mainQueue().addOperationWithBlock({
+			OperationQueue.main.addOperation({
 				self.photoDataSource.photos = allPhotos
-				self.collectionView.reloadSections(NSIndexSet(index: 0))
+				self.collectionView.reloadSections(IndexSet(integer: 0))
 			})
 			
 		}
     }
 	
 	// Listen to view size changes (portrait or landascape) to adapt hello view if necessary
-	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		if let helloView = helloView {
 			helloView.setConstraints()
 		}
@@ -104,22 +104,22 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 	// using the UICollectionView delegate method willDisplayCell.
 	// Best practice in order to only download what we need and prevent a costly operation.
 	
-	func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		
 		let photo = photoDataSource.photos[indexPath.row]
 		
 		// Download the image data, which could take some time
 		store.fetchImageForPhoto(photo) { (result) in
 			
-			NSOperationQueue.mainQueue().addOperationWithBlock({ 
+			OperationQueue.main.addOperation({ 
 				// The index path for the photo might have changed between the tine the request started
 				// and finished, so find the most recent index path
 				
-				if let photoIndex = self.photoDataSource.photos.indexOf(photo){
-					let photoIndexPath = NSIndexPath(forRow: photoIndex, inSection: 0)
+				if let photoIndex = self.photoDataSource.photos.index(of: photo){
+					let photoIndexPath = IndexPath(row: photoIndex, section: 0)
 					
 					// When the request finishes, only update the cell if it's still visible
-					if let cell = self.collectionView.cellForItemAtIndexPath(photoIndexPath) as? PhotoCollectionViewCell {
+					if let cell = self.collectionView.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell {
 						cell.updateWithImage(photo.image)
 					}
 				}
@@ -128,14 +128,14 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 	}
 	
 	// Prepare segue to pass store and photo to the next controller
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showPhoto" {
-			if let selectedIndexPath = collectionView.indexPathsForSelectedItems()?.first {
+			if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
 				let photo = photoDataSource.photos[selectedIndexPath.row]
 				
 				// Update views count
 				let numberOfViews = Float(photo.viewsCount) + 1.0
-				photo.viewsCount = NSNumber(float: numberOfViews)
+				photo.viewsCount = NSNumber(value: numberOfViews as Float)
 				do {
 					try store.coreDataStack.saveChanges()
 				}
@@ -143,7 +143,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 					print ("Error while saving changes on picture viewsCount: \(error)")
 				}
 				
-				let destinationVC = segue.destinationViewController as! PhotoInfoViewController
+				let destinationVC = segue.destination as! PhotoInfoViewController
 				destinationVC.photo = photo
 				destinationVC.store = store
 			}
@@ -159,20 +159,20 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
 		}
 		let allPhotos = try! self.store.fetchMainQueuePhotos(predicate: predicate, sortDescriptors: [sortByDateTaken])
 		print("total (CoreData) fetched photos: \(allPhotos.count)")
-		NSOperationQueue.mainQueue().addOperationWithBlock() {
+		OperationQueue.main.addOperation() {
 			self.photoDataSource.photos = allPhotos
-			self.collectionView.reloadSections(NSIndexSet(index: 0))
+			self.collectionView.reloadSections(IndexSet(integer: 0))
 		}
 	}
 	
-	func toggleList(sender:AnyObject){
+	func toggleList(_ sender:AnyObject){
 		refreshCollection()
 	}
 }
 
 extension PhotosViewController: UITextFieldDelegate {
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 		textField.addSubview(activityIndicator)
 		activityIndicator.frame = textField.bounds
 		activityIndicator.startAnimating()
@@ -180,12 +180,12 @@ extension PhotosViewController: UITextFieldDelegate {
 		store.fetchPhotos(Method.Search, keyword: textField.text) { (photosResult) in
 			
 			switch photosResult {
-			case .Success(let photos):
-				NSOperationQueue.mainQueue().addOperationWithBlock({
+			case .success(let photos):
+				OperationQueue.main.addOperation({
 					self.photoDataSource.photos = photos
-					self.collectionView.reloadSections(NSIndexSet(index: 0))
+					self.collectionView.reloadSections(IndexSet(integer: 0))
 				})
-			case .Failure(_):
+			case .failure(_):
 				break
 			}
 		}

@@ -27,7 +27,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 	}
 	
 	// Helper method to only spin the activity indicator when the cell is not displaying an image
-	func updateWithImage(image: UIImage?){
+	func updateWithImage(_ image: UIImage?){
 		if let imageToDisplay = image {
 			spinner.stopAnimating()
 			imageView.image = imageToDisplay

@@ -18,34 +18,34 @@ enum Method: String {
 // Use enum with associated values to tie a successful result status of a request with the data
 // or tie a failure with error info
 enum PhotosResult {
-    case Success([Photo])
-    case Failure(ErrorType) // ErrorType is a protocol that all errors conform to.
+    case success([Photo])
+    case failure(Error) // ErrorType is a protocol that all errors conform to.
 }
 
 // Represent possible errors for the FlickrAPI
-enum FlickError: ErrorType {
-    case InvalidJSONData
+enum FlickError: Error {
+    case invalidJSONData
 }
 
 struct FlickrAPI {
     
     // type properties and methods are declared with the "static" keyword
     // "private" is used to keep other files from being able to access baseURLString
-    private static let baseURLString = "https://api.flickr.com/services/rest"
-    private static let APIKey = "a6d819499131071f158fd740860a5a88"
+    fileprivate static let baseURLString = "https://api.flickr.com/services/rest"
+    fileprivate static let APIKey = "a6d819499131071f158fd740860a5a88"
 	
 	// instance of NSDateFormatter to convert dateTaken string instance into a NSDate
-	private static let dateFormatter: NSDateFormatter = {
-		let formatter = NSDateFormatter()
+	fileprivate static let dateFormatter: DateFormatter = {
+		let formatter = DateFormatter()
 		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		return formatter
 	}()
     
     // private method as this is an implementation detail of the FlickrAPI struct
-	private static func flickrURL(method method: Method, parameters: [String:String]?, keyword: String?)-> NSURL {
-        let components = NSURLComponents(string: baseURLString)!
+	fileprivate static func flickrURL(method: Method, parameters: [String:String]?, keyword: String?)-> URL {
+        var components = URLComponents(string: baseURLString)!
         
-        var queryItems = [NSURLQueryItem]()
+        var queryItems = [URLQueryItem]()
         
         let baseParams = [
             "method": method.rawValue,
@@ -56,21 +56,21 @@ struct FlickrAPI {
         
         // loop through base params and add them in NSURLQueryItems
         for (key, value) in baseParams {
-            let item = NSURLQueryItem(name: key, value: value)
+            let item = URLQueryItem(name: key, value: value)
             queryItems.append(item)
         }
         
         // loop through additional parameters attached to the method and add them too
         if let additionalParams = parameters {
             for (key, value) in additionalParams {
-                let item = NSURLQueryItem(name: key, value: value)
+                let item = URLQueryItem(name: key, value: value)
                 queryItems.append(item)
             }
         }
 		
 		// check if a keyword exists
 		if let additionalKeyword = keyword {
-			let item = NSURLQueryItem(name: "text", value: additionalKeyword)
+			let item = URLQueryItem(name: "text", value: additionalKeyword)
 			queryItems.append(item)
 		}
         
@@ -79,31 +79,31 @@ struct FlickrAPI {
 		// debug
 		//print("components url is: \(String(components.URL!))")
 		
-		return components.URL!
+		return components.url!
     }
     
     // internal (default access control level) exposed to the rest of the project
-    static func recentPhotosURL() -> NSURL {
+    static func recentPhotosURL() -> URL {
 		// Limit recent photos set to 50
 		return flickrURL(method: .RecentPhotos, parameters: ["extras": "url_h,date_taken", "per_page": "50"], keyword: nil)
     }
 	
-	static func searchPhotosURL(keyword: String) -> NSURL {
+	static func searchPhotosURL(_ keyword: String) -> URL {
 		return flickrURL(method: .Search, parameters: ["extras": "url_h,date_taken"], keyword: keyword)
 	}
     
     // convert the data into the basic foundation objects
-	static func photosFromJSONData(data: NSData, inContext context: NSManagedObjectContext) -> PhotosResult {
+	static func photosFromJSONData(_ data: Data, inContext context: NSManagedObjectContext) -> PhotosResult {
         do {
-            let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+            let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: [])
 			
 			// guard is a conditional statement that requires execution 
 			// to exit the current block if the condition isn't met
             guard let
-				jsonDictionary = jsonObject as? [NSObject:AnyObject],
-				photos = jsonDictionary["photos"] as? [String:AnyObject],
-				photosArray = photos["photo"] as? [[String: AnyObject]] else {
-					return .Failure(FlickError.InvalidJSONData)
+				jsonDictionary = jsonObject as? [AnyHashable: Any],
+				let photos = jsonDictionary["photos"] as? [String:AnyObject],
+				let photosArray = photos["photo"] as? [[String: AnyObject]] else {
+					return .failure(FlickError.invalidJSONData)
 			}
 			
             var finalPhotos = [Photo]()
@@ -116,25 +116,25 @@ struct FlickrAPI {
 			// Handle the possibility that the JSON format has changed
 			if finalPhotos.count == 0 && photosArray.count > 0 {
 				// We weren't able to parse any of the photos
-				return .Failure(FlickError.InvalidJSONData)
+				return .failure(FlickError.invalidJSONData)
 			}
 			
-            return .Success(finalPhotos)
+            return .success(finalPhotos)
         }
         catch let error {
-            return .Failure(error)
+            return .failure(error)
         }
     }
 	
 	// parse JSON dict into a Photo instance
-	private static func photoFromJSONObject(json: [String: AnyObject], inContext context: NSManagedObjectContext) -> Photo? {
+	fileprivate static func photoFromJSONObject(_ json: [String: AnyObject], inContext context: NSManagedObjectContext) -> Photo? {
 		guard let
 			photoID = json["id"] as? String,
-			title = json["title"] as? String,
-			dateString = json["datetaken"] as? String,
-			photoURLString = json["url_h"] as? String,
-			url = NSURL(string: photoURLString),
-			dateTaken = dateFormatter.dateFromString(dateString) else {
+			let title = json["title"] as? String,
+			let dateString = json["datetaken"] as? String,
+			let photoURLString = json["url_h"] as? String,
+			let url = URL(string: photoURLString),
+			let dateTaken = dateFormatter.date(from: dateString) else {
 				
 				// Don't have enough info to construct a Photo
 				return nil
@@ -142,13 +142,13 @@ struct FlickrAPI {
 		
 		
 		// First, take the photo ID and look in Core Data if we have a matching photo ID
-		let fetchRequest = NSFetchRequest(entityName: "Photo")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
 		let predicate = NSPredicate(format: "photoID == \(photoID)")
 		fetchRequest.predicate = predicate
 		
 		var fetchedPhotos: [Photo]!
-		context.performBlockAndWait { 
-			fetchedPhotos = try! context.executeFetchRequest(fetchRequest) as! [Photo]
+		context.performAndWait { 
+			fetchedPhotos = try! context.fetch(fetchRequest) as! [Photo]
 		}
 		// If we do, return early using the retrieved photo in Core data
 		if fetchedPhotos.count > 0 {
@@ -173,8 +173,8 @@ struct FlickrAPI {
 		// Since we need to return the photo, we need to use the synchronous optio.
 		
 		var photo: Photo!
-		context.performBlockAndWait() {
-			photo = NSEntityDescription.insertNewObjectForEntityForName("Photo", inManagedObjectContext: context) as! Photo
+		context.performAndWait() {
+			photo = NSEntityDescription.insertNewObject(forEntityName: "Photo", into: context) as! Photo
 			photo.title = title
 			photo.photoID = photoID
 			photo.remoteURL = url

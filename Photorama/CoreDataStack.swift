@@ -16,9 +16,9 @@ class CoreDataStack {
 	//MARK: - NSManagedObjectModel
 	
 	// Property to read in the model file from the main bundle
-	private lazy var managedObjectModel: NSManagedObjectModel = {
-		let modelURL = NSBundle.mainBundle().URLForResource(self.managedObjectModelName, withExtension: "momd")!
-		return NSManagedObjectModel(contentsOfURL: modelURL)!
+	fileprivate lazy var managedObjectModel: NSManagedObjectModel = {
+		let modelURL = Bundle.main.url(forResource: self.managedObjectModelName, withExtension: "momd")!
+		return NSManagedObjectModel(contentsOf: modelURL)!
 	}()
 	// Note: lazily loading allows the property initialization to be deferred until it is actually needed
 	
@@ -26,17 +26,17 @@ class CoreDataStack {
 	//MARK: - NSPersistentStoreCoordinator
 	
 	// Prepare location for the store where data will be saved and loaded from
-	private var applicationDocumentsDirectory: NSURL = {
-		let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+	fileprivate var applicationDocumentsDirectory: URL = {
+		let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return urls.first!
 	}()
 	
 	// Create coordinator and add the specific store which needs to know its type (SQLite) and its location
-	private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+	fileprivate lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 		var coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
 		let pathComponent = "\(self.managedObjectModelName).sqlite"
-		let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(pathComponent)
-		let store = try! coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+		let url = self.applicationDocumentsDirectory.appendingPathComponent(pathComponent)
+		let store = try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
 		return coordinator
 	}()
 	
@@ -48,17 +48,17 @@ class CoreDataStack {
 	
 	// Hold an instance of managed object context (moc)
 	lazy var mainQueueContext: NSManagedObjectContext = {
-		let moc = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+		let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		moc.persistentStoreCoordinator = self.persistentStoreCoordinator
 		moc.name = "Main Queue Context (UI Context)"
 		return moc
 	}()
 	
 	lazy var privateQueueContext: NSManagedObjectContext = {
-		let moc = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+		let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 		// An NSManagedObjectContext can either be associated with a NSPersistentStoreCoordinator or with a 
 		// parent NSManagedObjectContext
-		moc.parentContext = self.mainQueueContext
+		moc.parent = self.mainQueueContext
 		moc.name = "Primary Private Queue Context"
 		return moc
 	}()
@@ -73,10 +73,10 @@ class CoreDataStack {
 	
 	// Save changes to the context after Photo entities have been inserted into the context
 	func saveChanges() throws {
-		var error: ErrorType?
+		var error: Error?
 		
 		
-		privateQueueContext.performBlockAndWait { () -> Void in
+		privateQueueContext.performAndWait { () -> Void in
 			if self.privateQueueContext.hasChanges {
 				do {
 					try self.privateQueueContext.save()
@@ -90,7 +90,7 @@ class CoreDataStack {
 			throw error
 		}
 		
-		mainQueueContext.performBlockAndWait() {
+		mainQueueContext.performAndWait() {
 			if self.mainQueueContext.hasChanges {
 				do {
 					try self.mainQueueContext.save()
